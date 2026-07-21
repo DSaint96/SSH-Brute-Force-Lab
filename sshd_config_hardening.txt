@@ -1,0 +1,14 @@
+# Task 7 - SSH hardening lines.
+# Add these to C:\ProgramData\ssh\sshd_config ABOVE the
+# "Match Group administrators" block, then restart the sshd service.
+# Each setting directly counters the brute-force demonstrated in Task 4.
+
+MaxAuthTries 3            # limit guesses per connection (was effectively unlimited)
+LoginGraceTime 30        # drop unauthenticated sessions after 30 seconds
+PermitEmptyPasswords no  # never allow blank-password logins
+PermitRootLogin no       # block direct privileged login
+AllowUsers roman_reigns kratos_gow   # allow-list only the accounts that need SSH
+
+# Task 8 additions (enable key auth, disable password auth):
+# PubkeyAuthentication yes
+# PasswordAuthentication no
